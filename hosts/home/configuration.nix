@@ -17,7 +17,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.bootspec.enable = true;
-
+ 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -47,25 +47,25 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-
-  # Enable KDE Plasma Desktop Environment 
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-
-  #Enable hyperland
-  # programs.hyprland = {
-  #   enable = true;
-  #   package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-  #   xwayland.enable = true;
-  # };
-
-  # Configure keymap in X11
   services.xserver = {
+    enable = true;
     layout = "us";
     xkbVariant = "";
+    videoDrivers = [ "amdgpu" ];
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
   };
+  
+  #Enable hyperland
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  };
+  environment.sessionVariables.NIXOS_OZONE_WL="1";
+
+  # XDG portal
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -87,9 +87,7 @@
     #media-session.enable = true;
   };
 
-  # XDG portal
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -100,7 +98,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vscode
+    (vscode-with-extensions.override {
+    vscodeExtensions = with vscode-extensions; [
+      jnoortheen.nix-ide
+      yzhang.markdown-all-in-one
+      ms-vscode-remote.remote-containers
+    ];
+  })
     nil
     git
     wget
@@ -108,14 +112,17 @@
     kitty
 
     # #hyprland shits
-    # waybar #taskbar
-    # (waybar.overrideAttrs (oldAttrs: {
-    #   mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-    # }))
-    # swww #wallpaper engine
-    # rofi-wayland #app
-    # libnotify #notification
-    # dunst #notification
+    waybar #taskbar
+    (waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+    }))
+
+    swww #wallpaper engine
+    rofi-wayland #app
+    xdg-desktop-portal-gtk
+
+    libnotify #notification
+    dunst #notification
   ];
 
   # List services that you want to enable:
