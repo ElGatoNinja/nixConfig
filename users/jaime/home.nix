@@ -4,9 +4,7 @@
   home.username = "jaime";
   home.homeDirectory = "/home/jaime";
 
-  modules = [
-    ../../modules/hyprland
-  ];
+  imports = [../../modules/hyprland];
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
