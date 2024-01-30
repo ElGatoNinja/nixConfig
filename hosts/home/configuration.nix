@@ -109,7 +109,7 @@
     git
     wget
     curl
-    kitty
+    alacritty
 
     # #hyprland shits
     waybar #taskbar
