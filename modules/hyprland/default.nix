@@ -1,13 +1,5 @@
-{ pkgs, inputs, ... }:{
-  # home.packages = with pkgs; [
-  #     wofi 
-  #     swaybg 
-  #     wlsunset 
-  #     wl-clipboard 
-  #     hyprland
-  # ];
-  # home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;
-
+{ pkgs, inputs, config, ... }:
+{  
   wayland.windowManager.hyprland = {
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     enable= true;
@@ -18,14 +10,14 @@
         "HDMI-A-1,1920x1080@75,2560x0,1,transform,3u"
       ];
       
-      general = {
+      general = with config.colorScheme.colors; {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
         gaps_in = 4;
         gaps_out = 16;
         border_size = 3;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = "rgba(${base0E}ff) rgba(${base09}ff) 45deg";
+        "col.inactive_border" = "rgba(${base00}ff)";
 
         layout = "dwindle";
 
@@ -117,6 +109,8 @@
     };
   };
 }
+
+
 
 # monitor = ",preferred,auto,auto";
 

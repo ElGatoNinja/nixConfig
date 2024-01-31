@@ -1,10 +1,16 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, inputs, ... }:
 {
   home.username = "jaime";
   home.homeDirectory = "/home/jaime";
 
-  imports = [../../modules/hyprland];
+  imports = [
+    ../../modules/hyprland
+    ../../modules/alacritty
+    inputs.nix-colors.homeManagerModules.default
+  ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.darcula;
+
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
