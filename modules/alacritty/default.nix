@@ -1,5 +1,6 @@
 {pkgs, config, ...}: 
 {
+  programs.alacritty.enable = true;
   programs.alacritty.settings = {
     colors = with config.colorScheme.colors; {
       bright = {

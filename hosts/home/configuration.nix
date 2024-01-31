@@ -110,6 +110,7 @@
     wget
     curl
     alacritty
+    fastfetch
 
     # #hyprland shits
     waybar #taskbar
