@@ -103,6 +103,7 @@
       jnoortheen.nix-ide
       yzhang.markdown-all-in-one
       ms-vscode-remote.remote-containers
+      mhutchie.git-graph
     ];
   })
     nil
