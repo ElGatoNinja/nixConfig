@@ -53,7 +53,7 @@
     xkbVariant = "";
     videoDrivers = [ "amdgpu" ];
     displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
+    #desktopManager.plasma5.enable = true;
   };
   
   #Enable hyperland
