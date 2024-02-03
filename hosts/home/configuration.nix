@@ -63,6 +63,9 @@
   };
   environment.sessionVariables.NIXOS_OZONE_WL="1";
 
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
+
   # XDG portal
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -87,7 +90,8 @@
     #media-session.enable = true;
   };
 
-  
+  #docker
+  virtualisation.docker.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -99,12 +103,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     (vscode-with-extensions.override {
-    vscodeExtensions = with vscode-extensions; [
-      jnoortheen.nix-ide
-      yzhang.markdown-all-in-one
-      ms-vscode-remote.remote-containers
-    ];
-  })
+      vscodeExtensions = with vscode-extensions; [
+        jnoortheen.nix-ide
+        yzhang.markdown-all-in-one
+        ms-vscode-remote.remote-containers
+      ];
+    })
     nil
     git
     wget

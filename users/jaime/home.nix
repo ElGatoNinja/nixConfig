@@ -9,7 +9,7 @@
     inputs.nix-colors.homeManagerModules.default
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+  colorScheme = inputs.nix-colors.colorSchemes.tomorrow-night;
 
 
   # This value determines the Home Manager release that your configuration is
