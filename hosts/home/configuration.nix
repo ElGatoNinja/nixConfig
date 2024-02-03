@@ -53,7 +53,7 @@
     xkbVariant = "";
     videoDrivers = [ "amdgpu" ];
     displayManager.sddm.enable = true;
-    #desktopManager.plasma5.enable = true;
+    # esktopManager.plasma5.enable = true;
   };
   
   #Enable hyperland
@@ -62,6 +62,7 @@
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
   };
   environment.sessionVariables.NIXOS_OZONE_WL="1";
+    
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
@@ -102,14 +103,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    (vscode-with-extensions.override {
-    vscodeExtensions = with vscode-extensions; [
-      jnoortheen.nix-ide
-      yzhang.markdown-all-in-one
-      ms-vscode-remote.remote-containers
-      mhutchie.git-graph
-    ];
-  })
     nil
     git
     wget

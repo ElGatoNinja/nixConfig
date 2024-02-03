@@ -6,6 +6,7 @@
   imports = [
     ../../modules/hyprland
     ../../modules/alacritty
+    ../../modules/vscode
     inputs.nix-colors.homeManagerModules.default
   ];
 
@@ -26,6 +27,8 @@
     userName = "ElGatoNinja";
     userEmail = "JaimeGAlonso@outlook.com";
   };
+
+  
 
   # wayland.windowManager.hyprland = {
   #   enable = true;

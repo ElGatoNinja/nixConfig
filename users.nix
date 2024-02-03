@@ -7,6 +7,7 @@
   [(
     {...}: {
       home-manager = {
+        useGlobalPkgs = true;
         extraSpecialArgs = { inherit inputs;};
         users = builtins.listToAttrs (map (user: {
           name = user; 
