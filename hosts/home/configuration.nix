@@ -14,6 +14,7 @@
       ../../modules/system/networking.nix
       ../../modules/system/audio.nix
       ../../modules/system/swap.nix
+      ../../modules/system/virtualisation.nix
       
 
       ../../modules/hardware/bluetooth.nix
@@ -45,9 +46,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  #docker
-  virtualisation.docker.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
