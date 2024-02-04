@@ -12,6 +12,8 @@
       ../../modules/system/hyprland.nix
       ../../modules/system/i18n.nix
       ../../modules/system/networking.nix
+      ../../modules/system/audio.nix
+      ../../modules/system/swap.nix
       
 
       ../../modules/hardware/bluetooth.nix
