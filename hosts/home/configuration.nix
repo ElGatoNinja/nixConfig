@@ -35,6 +35,11 @@
     displayManager.sddm.enable = true;
     # esktopManager.plasma5.enable = true;
   };
+
+  # starship dependency
+  fonts.packages = [
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+  ];
     
 
   programs.fish.enable = true;
