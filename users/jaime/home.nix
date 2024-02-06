@@ -10,7 +10,7 @@
     inputs.nix-colors.homeManagerModules.default
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.tomorrow-night;
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
 
 
   # This value determines the Home Manager release that your configuration is
@@ -28,7 +28,13 @@
     userEmail = "JaimeGAlonso@outlook.com";
   };
 
-  
+  programs.fish.enable=true;
+  programs.fish.interactiveShellInit = ''
+    starship init fish | source
+  '';
+  programs.fish.shellAbbrs = {
+    nixos-switch = "nixos-rebuild switch ~/.dotfiles/";
+  };
 
   # wayland.windowManager.hyprland = {
   #   enable = true;
