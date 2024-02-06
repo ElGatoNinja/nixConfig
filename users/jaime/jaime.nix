@@ -6,8 +6,8 @@
     description = "handsome user";
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      firefox
       discord
+      chromium
     #  thunderbird
     ];
   };

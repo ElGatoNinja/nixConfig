@@ -9,12 +9,15 @@
       ms-vscode-remote.remote-containers
       mhutchie.git-graph
       pkief.material-icon-theme
-      #golf1052.base16-generator
+      golf1052.base16-generator
     ];
     userSettings = {
       "window.titleBarStyle"="custom"; #compatibility with hyperland
       
       "workbench.iconTheme" = "material-icon-theme";
+
+      "editor.fontFamily" = "'FiraCode Nerd Font Mono'";
+      "editor.fontLigatures" = true;
 
       #nix-ide
       "nix.enableLanguageServer" = true;
