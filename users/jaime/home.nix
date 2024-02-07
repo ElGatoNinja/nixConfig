@@ -7,6 +7,8 @@
     ../../modules/hyprland
     ../../modules/alacritty
     ../../modules/vscode
+    ../../modules/browsers/chromium.nix
+    
     inputs.nix-colors.homeManagerModules.default
   ];
 
