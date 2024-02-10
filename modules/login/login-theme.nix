@@ -3,7 +3,7 @@
 let
   image = pkgs.fetchurl {
     url = "https://wallhalla.com/wallpaper/61/variant/desktop/2560x1440?dl=true";
-    sha256 = "sha256-HrcYriKliK2QN02/2vFK/osFjTT1NamhGKik3tozGU0=";
+    sha256 = "sha256-MsplpBrgJRNnX7rh6NdwZnVtED5/yP5D073GlMrjdig=";
   };
 in
 pkgs.stdenv.mkDerivation {

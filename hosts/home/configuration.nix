@@ -84,6 +84,9 @@
 
     libnotify #notification
     dunst #notification
+
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
   ];
 
   # List services that you want to enable:
