@@ -14,6 +14,12 @@
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
 
+  home.pointerCursor = {
+    package = pkgs.catppuccin-cursors.mochaDark;
+    name = "Catppuccin-Mocha-Dark-Cursors";
+    size = 40;
+    gtk.enable = true;
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -38,9 +44,6 @@
     nixos-switch = "nixos-rebuild switch ~/.dotfiles/";
   };
 
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-  # };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.

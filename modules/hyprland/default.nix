@@ -4,13 +4,13 @@
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     enable= true;
 
-    settings = {
+    settings = with config.colorScheme.colors; {
       monitor = [
         "DP-1,2560×1440@165,0x0,1"
         "HDMI-A-1,1920x1080@75,2560x0,1,transform,3u"
       ];
       
-      general = with config.colorScheme.colors; {
+      general = {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
         gaps_in = 4;
@@ -106,6 +106,7 @@
       misc = {
         disable_hyprland_logo = true;
       };
+
     };
   };
 }
