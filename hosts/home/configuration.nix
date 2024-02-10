@@ -32,8 +32,12 @@
     layout = "us";
     xkbVariant = "";
     videoDrivers = [ "amdgpu" ];
-    displayManager.sddm.enable = true;
-    # esktopManager.plasma5.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      theme = "${import ../../modules/login/login-theme.nix {inherit pkgs;}}";
+    };
+
+    # desktopManager.plasma5.enable = true;
   };
 
   # starship dependency
