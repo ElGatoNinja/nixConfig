@@ -77,7 +77,7 @@
 
         "$terminal" = "alacritty";
         "$fileManager" = "dolphin";
-        "$menu" = "wofi --show drun";
+        "$menu" = "rofi -show drun";
 
         "$mod" = "SUPER";
 
