@@ -78,8 +78,8 @@
       mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     }))
 
-    swww #wallpaper engine
-    mpvpaper
+    mpvpaper #wallpaper engine
+
     rofi-wayland #app
     xdg-desktop-portal-gtk
 
