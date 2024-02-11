@@ -32,9 +32,15 @@
     layout = "us";
     xkbVariant = "";
     videoDrivers = [ "amdgpu" ];
+    displayManager.setupCommands = ''
+      xrandr --output HDMI-A-1 --off
+    '';
     displayManager.sddm = {
       enable = true;
       theme = "${import ../../modules/login/login-theme.nix {inherit pkgs;}}";
+      setupScript= ''
+      xrandr --output HDMI-A-1 --off
+      '';
     };
 
     # desktopManager.plasma5.enable = true;
@@ -79,6 +85,7 @@
     }))
 
     swww #wallpaper engine
+    mpvpaper
     rofi-wayland #app
     xdg-desktop-portal-gtk
 

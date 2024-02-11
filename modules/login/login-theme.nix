@@ -20,5 +20,7 @@ pkgs.stdenv.mkDerivation {
     cd $out/
     rm Background.jpg
     cp -r ${image} $out/Background.jpg
+    rm theme.conf
+    cp -r ${./theme.conf} $out/theme.conf
    '';
 }
