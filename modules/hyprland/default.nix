@@ -49,12 +49,7 @@
       };
 
       decoration = {
-        shadow_offset = "0 5";
         rounding = 10;
-        drop_shadow = "yes";
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
         blur = {
           enabled = true;
           size = 3;
@@ -77,34 +72,41 @@
           ];
       };
 
-        "$terminal" = "alacritty";
-        "$fileManager" = "dolphin";
-        "$menu" = "rofi -show drun";
+      
+      windowrulev2 = [
+        #vscode
+        "monitor [HDMI-A-1], class: code-url-handler" #open in vertical monitor
+        "nomaximizerequest, class:.*"
+      ];
 
-        "$mod" = "SUPER";
+      "$terminal" = "alacritty";
+      "$fileManager" = "dolphin";
+      "$menu" = "rofi -show drun";
 
-        bind = [ 
-          "$mod, T, exec, $terminal"
-          "$mod, C, killactive,"
-          "$mod, E, exec, $fileManager"
-          "$mod, V, togglefloating,"
-          "$mod, R, exec, $menu"
-          "$mod, P, pseudo," # dwindle
-          "$mod, O, togglesplit," # dwindl
+      "$mod" = "SUPER";
 
-          # Move focus with mainMod + arrow keys
-          "$mod, left, movefocus, l"
-          "$mod, right, movefocus, r"
-          "$mod, up, movefocus, u"
-          "$mod, down, movefocus, d"
-        ];
+      bind = [ 
+        "$mod, T, exec, $terminal"
+        "$mod, C, killactive,"
+        "$mod, E, exec, $fileManager"
+        "$mod, V, togglefloating,"
+        "$mod, R, exec, $menu"
+        "$mod, P, pseudo," # dwindle
+        "$mod, O, togglesplit," # dwindl
 
-        bindm = [
-          # mouse movements
-          "$mod, mouse:272, movewindow"
-          "$mod, mouse:273, resizewindow"
-          "$mod ALT, mouse:272, resizewindow"
-        ];
+        # Move focus with mainMod + arrow keys
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+      ];
+
+      bindm = [
+        # mouse movements
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+        "$mod ALT, mouse:272, resizewindow"
+      ];
       misc = {
         disable_hyprland_logo = true;
       };

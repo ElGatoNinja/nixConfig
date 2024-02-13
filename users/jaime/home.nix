@@ -1,4 +1,7 @@
 { config, pkgs, inputs, ... }:
+let
+  nix-colors-lib = inputs.nix-colors.lib.contrib {inherit pkgs;};
+in
 {
   home.username = "jaime";
   home.homeDirectory = "/home/jaime";
@@ -12,7 +15,12 @@
     inputs.nix-colors.homeManagerModules.default
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
+  #colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
+  colorScheme = nix-colors-lib.colorSchemeFromPicture {
+    path = ../../modules/hyprland/wallpaper.jpg;
+    variant = "dark";
+  };
+
 
   home.pointerCursor = {
     package = pkgs.catppuccin-cursors.mochaDark;
