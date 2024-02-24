@@ -84,6 +84,12 @@
     # #hyprland shits
     mpvpaper #wallpaper engine
 
+    (waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+    }))
+
+
+
     rofi-wayland #app
     xdg-desktop-portal-gtk
 

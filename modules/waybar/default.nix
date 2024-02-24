@@ -1,49 +1,51 @@
-{pkgs}:
+{pkgs,...}:
 {
   programs.waybar.enable = true;
+  programs.waybar.package = pkgs.waybar;
   programs.waybar.systemd.enable = true;
   programs.waybar.settings = {
-    layer = "top";
-    position = "top";
-    "margin-top" = 14; 
-    "margin-bottom" = 0;
+    mainbar = {
+      layer = "top";
+      position = "top";
+      "margin-top" = 14; 
+      "margin-bottom" = 0;
 
-    "modulse-center" = [
-      "hyprland/workspaces"
-    ];
+      "modules-center" = [
+        "hyprland/workspaces"
+      ];
 
-    "modules-right" = [
-      "network"
-      "cpu"
-      "memory"
-      "temperature"
-      "clock"
-    ];
+      "modules-right" = [
+        "network"
+        "cpu"
+        "memory"
+        "temperature"
+        "clock"
+      ];
 
-    clock = {
-      format-alt = "{:%Y-%m-%d}";
-      tooltip-format = "{:%Y-%m-%d | %H:%M}";
-    };
+      clock = {
+        format-alt = "{:%Y-%m-%d}";
+        tooltip-format = "{:%Y-%m-%d | %H:%M}";
+      };
 
-    cpu = {
-      format = "{usage}% ";
-      tooltip = false;
-    };
+      cpu = {
+        format = "{usage}% ";
+        tooltip = true;
+      };
 
-    memory = { format = "{}% "; };
-    network = {
-      interval = 1;
-      format-alt = "{ifname}: {ipaddr}/{cidr}";
-      format-disconnected = "Disconnected ⚠";
-      format-ethernet = "{ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
-      format-linked = "{ifname} (No IP) ";
-      format-wifi = "{essid} ({signalStrength}%) ";
-    };
+      memory = { format = "{}% "; };
+      network = {
+        interval = 1;
+        format-disconnected = "Disconnected ⚠";
+        format-ethernet = "󰈁 󰕒 {bandwidthUpBits}  󰇚 {bandwidthDownBits}";
+        format-linked = "{ifname} (No IP) ";
+        format-wifi = "{essid} ({signalStrength}%) ";
+      };
 
-    temperature = {
-      critical-threshold = 80;
-      format = "{temperatureC}°C {icon}";
-      format-icons = [ "" "" "" ];
+      temperature = {
+        critical-threshold = 80;
+        format = "{temperatureC}°C {icon}";
+        format-icons = [ "" "" "" ];
+      };
     };
   };
 
