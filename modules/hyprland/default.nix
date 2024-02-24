@@ -7,7 +7,6 @@
     settings = with config.colorScheme.colors; {
       exec-once = [ 
         "mpvpaper -o \"no-audio --loop --no-keepaspect\" '*' ${./wallpaper.mp4}" 
-        "waybar"  
       ];
 
       monitor = [
@@ -101,6 +100,17 @@
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+
+        "$mainMod, 1, workspace, 1"
+        "$mainMod, 2, workspace, 2"
+        "$mainMod, 3, workspace, 3"
+        "$mainMod, 4, workspace, 4"
+        "$mainMod, 5, workspace, 5"
+        "$mainMod, 6, workspace, 6"
+        "$mainMod, 7, workspace, 7"
+        "$mainMod, 8, workspace, 8"
+        "$mainMod, 9, workspace, 9"
+        "$mainMod, 0, workspace, 10"
       ];
 
       bindm = [
