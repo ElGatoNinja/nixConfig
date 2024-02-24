@@ -5,7 +5,10 @@
     enable= true;
 
     settings = with config.colorScheme.colors; {
-      exec-once = [ "mpvpaper -o \"no-audio --loop --no-keepaspect\" '*' ${./wallpaper.mp4}" ];
+      exec-once = [ 
+        "mpvpaper -o \"no-audio --loop --no-keepaspect\" '*' ${./wallpaper.mp4}" 
+        "waybar"  
+      ];
 
       monitor = [
         "DP-1,2560×1440@165,0x0,1"
@@ -75,8 +78,7 @@
       
       windowrulev2 = [
         #vscode
-        "monitor [HDMI-A-1], class: code-url-handler" #open in vertical monitor
-        "nomaximizerequest, class:.*"
+        "monitor HDMI-A-1, class: code-url-handler" #open in vertical monitor
       ];
 
       "$terminal" = "alacritty";

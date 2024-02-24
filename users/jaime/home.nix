@@ -10,6 +10,7 @@ in
     ../../modules/hyprland
     ../../modules/alacritty
     ../../modules/vscode
+    ../../modules/waybar
     ../../modules/browsers/chromium.nix
     
     inputs.nix-colors.homeManagerModules.default
