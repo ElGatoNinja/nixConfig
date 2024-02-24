@@ -20,6 +20,15 @@
       ../../modules/hardware/bluetooth.nix
     ];
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    extraPackages = [
+      pkgs.rocmPackages.clr.icd
+      pkgs.amdvlk
+    ];
+  };
+
   # Bootloader.                       
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -73,11 +82,6 @@
     fastfetch
 
     # #hyprland shits
-    waybar #taskbar
-    (waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-    }))
-
     mpvpaper #wallpaper engine
 
     rofi-wayland #app
@@ -88,6 +92,11 @@
 
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
+
+    pkgs.linuxKernel.packages.linux_zen.amdgpu-pro
+    rocmPackages.rocm-smi
+    rocmPackages.rocminfo
+    rocmPackages.rocm-core
   ];
 
   # List services that you want to enable:
