@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, lib, ... }:
 
 {
   imports =
@@ -31,9 +31,14 @@
 
   # Bootloader.
   boot.kernelPackages = pkgs.linuxPackages_latest;                     
-  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.bootspec.enable = true;
+
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.lanzaboote = {
+              enable = true;
+              pkiBundle = "/etc/secureboot";
+  };
   
 
   # Enable the X11 windowing system.
@@ -79,6 +84,7 @@
     git
     wget
     curl
+    sbctl #boot info
     alacritty
     fastfetch
 

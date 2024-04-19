@@ -8,6 +8,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        lanzaboote = {
+            url = "github:nix-community/lanzaboote/v0.3.0";
+            inputs.nixpkgs.follows="nixpkgs";
+        };
+
         hyprland.url = "github:hyprwm/Hyprland";
         nix-colors.url = "github:misterio77/nix-colors";
     };
@@ -25,6 +30,7 @@
                     modules = [ 
                         ./hosts/home/configuration.nix
                         inputs.home-manager.nixosModules.default 
+                        inputs.lanzaboote.nixosModules.lanzaboote
                     ] 
                     ++ (usersConfig {
                             users = [ "jaime" ]; 
