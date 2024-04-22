@@ -36,8 +36,8 @@
 
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.lanzaboote = {
-              enable = true;
-              pkiBundle = "/etc/secureboot";
+    enable = true;
+    pkiBundle = "/etc/secureboot";
   };
   
 
@@ -82,8 +82,6 @@
   environment.systemPackages = with pkgs; [
     nil
     git
-    wget
-    curl
     sbctl #boot info
     alacritty
     fastfetch
