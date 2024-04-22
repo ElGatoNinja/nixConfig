@@ -26,7 +26,7 @@
         in {
             nixosConfigurations = {
                 home = nixpkgs.lib.nixosSystem {
-                    specialArgs = { inherit inputs;};
+                    specialArgs = { inherit inputs; flakeName="home";};
                     modules = [ 
                         ./hosts/home/configuration.nix
                         inputs.home-manager.nixosModules.default 

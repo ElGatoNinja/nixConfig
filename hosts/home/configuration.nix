@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, flakeName, ... }:
 
 {
   imports =
@@ -15,7 +15,7 @@
       ../../modules/system/audio.nix
       ../../modules/system/swap.nix
       ../../modules/system/virtualisation.nix
-      
+      ../../modules/nh.nix
 
       ../../modules/hardware/bluetooth.nix
     ];
