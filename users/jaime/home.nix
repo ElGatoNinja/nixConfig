@@ -43,15 +43,16 @@ in
     enable = true;
     userName = "ElGatoNinja";
     userEmail = "JaimeGAlonso@outlook.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+      safe.directory = "*";
+    };
   };
 
   programs.fish.enable=true;
   programs.fish.interactiveShellInit = ''
     starship init fish | source
   '';
-  programs.fish.shellAbbrs = {
-    nixos-switch = "nixos-rebuild switch ~/.dotfiles/";
-  };
 
 
   # The home.packages option allows you to install Nix packages into your

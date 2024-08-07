@@ -20,16 +20,44 @@
       ../../modules/nh.nix
 
       ../../modules/hardware/bluetooth.nix
-    ];
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    extraPackages = [
-      pkgs.rocmPackages.clr.icd
-      pkgs.amdvlk
+      inputs.sops-nix.nixosModules.sops
     ];
+  
+
+  sops.defaultSopsFile = ../../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/jaime/.config/sops/age/keys.txt";
+  sops.secrets."github/sshkey" = {
+    owner = "git-ssh-service"; 
   };
+
+  systemd.services."git-ssh-service" = {
+    script = ''
+      ssh-add - <<< ${config.sops.secrets."github/sshkey".path} ;
+    '';
+    serviceConfig = {
+      User = "git-ssh-service";
+      WorkingDirectory = "/var/lib/git-ssh-service";
+    };
+  };
+
+  users.users."git-ssh-service" = {
+    home = "/var/lib/git-ssh-service";
+    createHome = true;
+    isSystemUser = true;
+    group = "git-ssh-service";
+  };
+  users.groups."git-ssh-service" = {};
+
+  # hardware.opengl = {
+  #   enable = true;
+  #   driSupport = true;
+  #   extraPackages = [
+  #     pkgs.rocmPackages.clr.icd
+  #     pkgs.amdvlk
+  #   ];
+  # };
 
   # Bootloader.
   boot.kernelPackages = pkgs.linuxPackages_latest;                     
@@ -87,6 +115,8 @@
     sbctl #boot info
     alacritty
     fastfetch
+
+    sops
 
     # #hyprland shits
     mpvpaper #wallpaper engine
