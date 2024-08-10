@@ -9,7 +9,7 @@
         y = 8;
       };
     };
-    colors = with config.colorScheme.colors; {
+    colors = with config.colorScheme.palette; {
       bright = {
         black = "0x${base00}";
         blue = "0x${base0D}";
@@ -53,7 +53,7 @@
 
   programs.starship.enable = true;
   programs.starship.enableFishIntegration = true;
-  programs.starship.settings = with config.colorScheme.colors; 
+  programs.starship.settings = with config.colorScheme.palette; 
   let
     section_user = {fg="${base06}"; bg="${base08}";};
     section_dir = {fg="${base06}"; bg="${base09}";};

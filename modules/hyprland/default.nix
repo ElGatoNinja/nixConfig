@@ -4,7 +4,7 @@
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     enable= true;
 
-    settings = with config.colorScheme.colors; {
+    settings = with config.colorScheme.palette; {
       exec-once = [ 
         "mpvpaper -o \"no-audio --loop --no-keepaspect\" '*' ${./wallpaper.mp4}" 
       ];

@@ -17,6 +17,7 @@
       ../../modules/system/audio.nix
       ../../modules/system/swap.nix
       ../../modules/system/virtualisation.nix
+      ../modules/system/displayLink.nix
       ../../modules/nh.nix
 
       ../../modules/hardware/bluetooth.nix
@@ -70,13 +71,12 @@
     pkiBundle = "/etc/secureboot";
   };
   
-
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     layout = "us";
     xkbVariant = "";
-    videoDrivers = [ "amdgpu" ];
+    videoDrivers = [ "amdgpu"];
     displayManager.sddm = {
       enable = true;
       theme = "${import ../../modules/login/login-theme.nix {inherit pkgs;}}";
@@ -136,7 +136,6 @@
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
 
-    pkgs.linuxKernel.packages.linux_zen.amdgpu-pro
     rocmPackages.rocm-smi
     rocmPackages.rocminfo
     rocmPackages.rocm-core

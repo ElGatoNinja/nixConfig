@@ -79,7 +79,7 @@
     };
   };
 
-  programs.waybar.style = with config.colorScheme.colors; ''
+  programs.waybar.style = with config.colorScheme.palette; ''
     ${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
     
     * {
