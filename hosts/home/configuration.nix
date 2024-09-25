@@ -17,7 +17,7 @@
       ../../modules/system/audio.nix
       ../../modules/system/swap.nix
       ../../modules/system/virtualisation.nix
-      ../modules/system/displayLink.nix
+      ../../modules/system/displayLink.nix
       ../../modules/nh.nix
 
       ../../modules/hardware/bluetooth.nix

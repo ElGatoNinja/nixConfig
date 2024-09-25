@@ -10,8 +10,9 @@
       ];
 
       monitor = [
-          "DP-1,highrr,0x0,1"
-          "HDMI-A-1,1920x1080@75,2560x0,1,transform,3"
+          "DP-2,highrr,0x0,1"
+          "DVI-I-1,1920x1080@75,2560x0,1,transform,3"
+          "DVI-I-2,1920x1080@60,320x1440,1"
       ];
       
       general = {

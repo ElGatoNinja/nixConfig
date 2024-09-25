@@ -2,5 +2,5 @@
 
 {
   boot.kernelModules = ["evdi"];
-  services.xserver.videoDrivers = [ "amdgpu"];
+  services.xserver.videoDrivers = ["displaylink" "modesetting"];
 }
