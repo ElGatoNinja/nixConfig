@@ -1,18 +1,32 @@
 { pkgs, inputs, config, ... }:
-{  
+let 
+  wallpaper = "./wallpaper.jpg";
+in {
+  # services.hyprpaper = {
+  #   enable = true;
+  #   settings = {
+  #     ipc="off";
+  #     splash=false;
+  #     preload= [
+  #       wallpaper
+  #     ];
+  #     wallpapers = [
+  #       "desc:AOC Q27G2G3R3B RTEMAHA002340, ${wallpaper}"
+  #       "desc:Microstep MSI MP242 PA1T300B03669, ${wallpaper}"
+  #       "desc:Wacom Tech Wacom One 13 9LQ0171021920, ${wallpaper}"
+  #     ];
+  #   };
+  # };
   wayland.windowManager.hyprland = {
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     enable= true;
 
     settings = with config.colorScheme.palette; {
-      exec-once = [ 
-        "mpvpaper -o \"no-audio --loop --no-keepaspect\" '*' ${./wallpaper.mp4}" 
-      ];
 
       monitor = [
-          "DP-2,highrr,0x0,1"
-          "DVI-I-1,1920x1080@75,2560x0,1,transform,3"
-          "DVI-I-2,1920x1080@60,320x1440,1"
+          "desc:AOC Q27G2G3R3B RTEMAHA002340,highrr,0x0,1"
+          "desc:Microstep MSI MP242 PA1T300B03669,1920x1080@75,2560x0,1,transform,3"
+          "desc:Wacom Tech Wacom One 13 9LQ0171021920,1920x1080@60,320x1440,1"
       ];
       
       general = {
