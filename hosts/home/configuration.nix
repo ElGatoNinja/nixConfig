@@ -50,15 +50,15 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
     videoDrivers = [ "amdgpu"];
-    displayManager.sddm = {
+    # desktopManager.plasma5.enable = true;
+  };
+
+  services.displayManager.sddm = {
       enable = true;
       theme = "${import ../../modules/login/login-theme.nix {inherit pkgs;}}";
-    };
-
-    # desktopManager.plasma5.enable = true;
   };
 
   # starship dependency
@@ -95,7 +95,7 @@
     sops
 
     # #hyprland shits
-
+    swaybg
     (waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
     }))

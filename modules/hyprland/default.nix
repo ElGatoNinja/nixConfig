@@ -1,28 +1,15 @@
 { pkgs, inputs, config, ... }:
 let 
-  wallpaper = "./wallpaper.jpg";
+  wallpaper = "${./wallpaper.jpg}";
 in {
-  # services.hyprpaper = {
-  #   enable = true;
-  #   settings = {
-  #     ipc="off";
-  #     splash=false;
-  #     preload= [
-  #       wallpaper
-  #     ];
-  #     wallpapers = [
-  #       "desc:AOC Q27G2G3R3B RTEMAHA002340, ${wallpaper}"
-  #       "desc:Microstep MSI MP242 PA1T300B03669, ${wallpaper}"
-  #       "desc:Wacom Tech Wacom One 13 9LQ0171021920, ${wallpaper}"
-  #     ];
-  #   };
-  # };
   wayland.windowManager.hyprland = {
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     enable= true;
 
     settings = with config.colorScheme.palette; {
-
+      exec-once = [ 
+        "swaybg --image ${wallpaper} --mode fill" 
+      ];
       monitor = [
           "desc:AOC Q27G2G3R3B RTEMAHA002340,highrr,0x0,1"
           "desc:Microstep MSI MP242 PA1T300B03669,1920x1080@75,2560x0,1,transform,3"
@@ -107,8 +94,12 @@ in {
         "$mod, E, exec, $fileManager"
         "$mod, V, togglefloating,"
         "$mod, R, exec, $menu"
+
+
         "$mod, P, pseudo," # dwindle
         "$mod, O, togglesplit," # dwindl
+        "$mod, F, togglefloating,"
+        "$mod, F11, fullscreen,"
 
         # Move focus with mainMod + arrow keys
         "$mod, left, movefocus, l"
@@ -116,6 +107,7 @@ in {
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
 
+        # Change workspace
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
         "$mod, 3, workspace, 3"
@@ -126,13 +118,32 @@ in {
         "$mod, 8, workspace, 8"
         "$mod, 9, workspace, 9"
         "$mod, 0, workspace, 10"
+
+        # Move active window to other screen
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, up, movewindow, u"
+        "$mod SHIFT, down, movewindow, d"
+
+        # Move active window to a workspace
+        "$mod SHIFT, 1, movetoworkspace, 1"
+        "$mod SHIFT, 2, movetoworkspace, 2"
+        "$mod SHIFT, 3, movetoworkspace, 3"
+        "$mod SHIFT, 4, movetoworkspace, 4"
+        "$mod SHIFT, 5, movetoworkspace, 5"
+        "$mod SHIFT, 6, movetoworkspace, 6"
+        "$mod SHIFT, 7, movetoworkspace, 7"
+        "$mod SHIFT, 8, movetoworkspace, 8"
+        "$mod SHIFT, 9, movetoworkspace, 9"
+        "$mod SHIFT, 0, movetoworkspace, 10"
+
+        
       ];
 
       bindm = [
         # mouse movements
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
-        "$mod ALT, mouse:272, resizewindow"
       ];
       misc = {
         disable_hyprland_logo = true;

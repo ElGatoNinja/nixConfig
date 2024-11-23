@@ -23,12 +23,12 @@ in
   };
 
 
-  home.pointerCursor = {
-    package = pkgs.catppuccin-cursors.mochaDark;
-    name = "Catppuccin-Mocha-Dark-Cursors";
-    size = 40;
-    gtk.enable = true;
-  };
+  # home.pointerCursor = {
+  #   package = pkgs.catppuccin-cursors.mochaDark;
+  #   name = "Catppuccin-Mocha-Dark-Cursors";
+  #   size = 40;
+  #   gtk.enable = true;
+  # };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
