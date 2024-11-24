@@ -1,9 +1,9 @@
-{pkgs, config, ...}: 
+{pkgsUnstable, config, ...}: 
 {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode;
-    extensions = with pkgs.vscode-extensions; [
+    package = pkgsUnstable.vscode;
+    extensions = with pkgsUnstable.vscode-extensions; [
       jnoortheen.nix-ide
       yzhang.markdown-all-in-one
       ms-vscode-remote.remote-containers

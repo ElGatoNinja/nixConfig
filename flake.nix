@@ -3,6 +3,7 @@
     
     inputs = {
         nixpkgs.url = "nixpkgs/nixos-24.11";
+        nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
         home-manager = { 
             url = "github:nix-community/home-manager/release-24.11";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -19,24 +20,35 @@
         swww.url = "github:LGFae/swww";
     };
 
-    outputs = {self ,nixpkgs, ...}@inputs: 
+    outputs = {self ,nixpkgs, nixpkgs-unstable, ...}@inputs: 
         let 
             system="x86_64-linux";
-            pkgs = nixpkgs.legacyPackages.${system};
             
+            args = {
+                inherit inputs;
+                pkgs = import nixpkgs {
+                    inherit system;
+                    config.allowUnfree = true;
+                };
+                pkgsUnstable = import nixpkgs-unstable{
+                    inherit system;
+                    config.allowUnfree = true;
+                };
+                hostName="home"; 
+            };
             usersConfig = import ./users.nix; 
         in {
             nixosConfigurations = {
                 home = nixpkgs.lib.nixosSystem {
-                    specialArgs = { inherit inputs; hostName="home";};
+                    specialArgs = args;
                     modules = [ 
                         ./hosts/home/configuration.nix
                         inputs.home-manager.nixosModules.default 
                         inputs.lanzaboote.nixosModules.lanzaboote
-                    ] 
+                    ]
                     ++ (usersConfig {
                             users = [ "jaime" ]; 
-                            inherit inputs;
+                            inherit args;
                         });
                 };
             };

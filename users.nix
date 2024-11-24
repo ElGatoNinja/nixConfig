@@ -1,14 +1,14 @@
 # take users and the inputs, returns a list with configurations from the ./users dir and a
 # final configuration of home-manager with every user 
 
-{users, inputs}: 
+{users, args}: 
   map (user : ./users/${user}/${user}.nix) users
   ++ 
   [(
     {...}: {
       home-manager = {
         useGlobalPkgs = true;
-        extraSpecialArgs = { inherit inputs;};
+        extraSpecialArgs = args;
         users = builtins.listToAttrs (map (user: {
           name = user; 
           value = import ./users/${user}/home.nix; 

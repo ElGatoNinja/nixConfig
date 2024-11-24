@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, lib, hostName, ... }:
+{ inputs, config, pkgs, pkgsUnstable, lib, hostName,  ... }:
 
 {
   networking.hostName = hostName;
@@ -17,11 +17,10 @@
       ../../modules/system/swap.nix
       ../../modules/system/virtualisation.nix
       ../../modules/system/displayLink.nix
-      ../../modules/nh.nix
+      ../../modules/fish.nix
       ../../modules/nh.nix
 
       ../../modules/hardware/bluetooth.nix
-
       ../../modules/system/sopsSecrets.nix
       inputs.sops-nix.nixosModules.sops
     ];
@@ -65,24 +64,6 @@
   fonts.packages = [
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
-    
-
-  programs.fish.enable = true;
-  programs.fish.interactiveShellInit = ''
-    set fish_greeting # Disable greeting
-
-    starship init fish | source
-
-    function y
-      set tmp (mktemp -t "yazi-cwd.XXXXXX")
-      yazi $argv --cwd-file="$tmp"
-      set cwd (command cat -- "$tmp")
-      if [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-        builtin cd -- "$cwd"
-      end
-      rm -f -- "$tmp"
-    end
-  '';
 
   users.defaultUserShell = pkgs.fish;
 
@@ -92,9 +73,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

@@ -1,6 +1,6 @@
 let 
   users = ["jaime" "marcos" "antonio" "cristel"];
-  inputs = 0;
+  args = {a= 0; b=2;};
   usersConfig = import ./users.nix; 
 in
   [ 
@@ -8,6 +8,6 @@ in
   ] 
     ++ (usersConfig {
             users = users; 
-            inherit inputs;
+            inherit args;
         })
   #usersConfig {users= users; inputs=inputs;}
