@@ -78,9 +78,9 @@ in {
       };
 
       
-      windowrulev2 = [
-        "tile, initialClass: [\s\S]+" #open everything tiled
-      ];
+      # windowrulev2 = [
+      #   "tile, initialClass: ^(chromium-browser)$" #open everything tiled
+      # ];
 
       "$terminal" = "alacritty";
       "$fileManager" = "dolphin";
