@@ -12,6 +12,7 @@ in
     ../../modules/vscode
     ../../modules/waybar
     ../../modules/browsers/chromium.nix
+    ../../modules/fish.nix
     
     inputs.nix-colors.homeManagerModules.default
   ];
