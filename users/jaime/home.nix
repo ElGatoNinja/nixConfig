@@ -49,11 +49,6 @@ in
     };
   };
 
-  programs.fish.enable=true;
-  programs.fish.interactiveShellInit = ''
-    starship init fish | source
-  '';
-
 
   # The home.packages option allows you to install Nix packages into your
   # environment.

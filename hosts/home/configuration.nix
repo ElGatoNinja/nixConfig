@@ -67,6 +67,22 @@
     
 
   programs.fish.enable = true;
+  programs.fish.interactiveShellInit = ''
+    set fish_greeting # Disable greeting
+
+    starship init fish | source
+
+    function y
+      set tmp (mktemp -t "yazi-cwd.XXXXXX")
+      yazi $argv --cwd-file="$tmp"
+      set cwd (command cat -- "$tmp")
+      if [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+      end
+      rm -f -- "$tmp"
+    end
+  '';
+
   users.defaultUserShell = pkgs.fish;
 
   # XDG portal
@@ -89,6 +105,7 @@
     git
     sbctl #boot info
     alacritty
+    yazi #terminal file manager
     fastfetch
 
     sops
@@ -115,6 +132,8 @@
     rocmPackages.rocm-core
 
   ];
+
+
 
   # List services that you want to enable:
 
