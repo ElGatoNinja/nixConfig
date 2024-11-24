@@ -1,4 +1,7 @@
 {pkgs, config, ...}: 
+let 
+  color = import ../hyprland/palette.nix;
+in 
 {
   programs.alacritty.enable = true;
   programs.alacritty.settings = {
@@ -45,7 +48,7 @@
         yellow = "0x${base0A}";
       };
       primary = {
-        background = "0x${base00}";
+        background = "0x${color.base0}";
         foreground = "0x${base06}";
       };
     };

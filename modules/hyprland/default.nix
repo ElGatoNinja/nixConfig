@@ -1,12 +1,13 @@
 { pkgs, inputs, config, ... }:
 let 
   wallpaper = "${./wallpaper.jpg}";
+  colors = import ./palette.nix;
 in {
   wayland.windowManager.hyprland = {
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     enable= true;
 
-    settings = with config.colorScheme.palette; {
+    settings = with colors; {
       exec-once = [ 
         "swaybg --image ${wallpaper} --mode fill" 
       ];
@@ -22,8 +23,8 @@ in {
         gaps_in = 4;
         gaps_out = 16;
         border_size = 3;
-        "col.active_border" = "rgba(${base0E}ff) rgba(${base09}ff) 45deg";
-        "col.inactive_border" = "rgba(${base00}ff)";
+        "col.active_border" = "rgba(${accent0}ff) rgba(${accent1}ff) 45deg";
+        "col.inactive_border" = "rgba(${base2}ff)";
 
         layout = "dwindle";
 
@@ -78,8 +79,7 @@ in {
 
       
       windowrulev2 = [
-        #vscode
-        "monitor HDMI-A-1, class: code-url-handler" #open in vertical monitor
+        "tile, initialClass: [\s\S]+" #open everything tiled
       ];
 
       "$terminal" = "alacritty";
