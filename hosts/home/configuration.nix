@@ -110,6 +110,7 @@
     rocmPackages.rocminfo
     rocmPackages.rocm-core
 
+    bambu-studio
   ];
 
 
