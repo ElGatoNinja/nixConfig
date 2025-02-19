@@ -96,7 +96,7 @@ in
         Music = "󰝚 ";
         Pictures = " ";
         Developer = "󰲋 ";
-        ".dotfiles" = " ";
+        ".flake" = " ";
       };
     };
 

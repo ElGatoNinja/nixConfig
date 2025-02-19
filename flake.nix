@@ -2,15 +2,15 @@
     description = "My first flake!";
     
     inputs = {
-        nixpkgs.url = "nixpkgs/nixos-24.11";
+        nixpkgs.url = "nixpkgs/nixos-unstable"; #temporary
         nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
         home-manager = { 
-            url = "github:nix-community/home-manager/release-24.11";
+            url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
         lanzaboote = {
-            url = "github:nix-community/lanzaboote/v0.3.0";
+            url = "github:nix-community/lanzaboote/v0.4.2";
             inputs.nixpkgs.follows="nixpkgs";
         };
 
@@ -23,28 +23,49 @@
     outputs = {self ,nixpkgs, nixpkgs-unstable, ...}@inputs: 
         let 
             system="x86_64-linux";
-            
-            args = {
-                inherit inputs;
-                pkgs = import nixpkgs {
-                    inherit system;
-                    config.allowUnfree = true;
-                };
-                pkgsUnstable = import nixpkgs-unstable{
-                    inherit system;
-                    config.allowUnfree = true;
-                };
-                hostName="home"; 
+            pkgs = import nixpkgs {
+                inherit system; 
+                config.allowUnfree = true;
             };
+
+            pkgsUnstable = import nixpkgs-unstable {
+                inherit system; 
+                config.allowUnfree = true;
+            };
+
+            args = {
+                inherit inputs pkgs pkgsUnstable system; 
+                hostName = "home";
+            };
+
+            specialArgs = {
+                inherit inputs pkgsUnstable system;
+                hostName = "home";
+            };
+            
             usersConfig = import ./users.nix; 
         in {
             nixosConfigurations = {
                 home = nixpkgs.lib.nixosSystem {
-                    specialArgs = args;
+                    inherit specialArgs;
                     modules = [ 
                         ./hosts/home/configuration.nix
+                        ./hosts/home/hardware-configuration.nix
+                        ./modules/system/hyprland.nix
+                        ./modules/system/i18n.nix
+                        ./modules/system/networking.nix
+                        ./modules/system/audio.nix
+                        ./modules/system/swap.nix
+                        ./modules/system/virtualisation.nix
+                        ./modules/system/displayLink.nix
+                        ./modules/fish.nix
+                        ./modules/nh.nix
+                        ./modules/hardware/bluetooth.nix
+                        ./modules/system/sopsSecrets.nix
+                        inputs.sops-nix.nixosModules.sops
                         inputs.home-manager.nixosModules.default 
                         inputs.lanzaboote.nixosModules.lanzaboote
+                        { nixpkgs.pkgs = pkgs; }
                     ]
                     ++ (usersConfig {
                             users = [ "jaime" ]; 

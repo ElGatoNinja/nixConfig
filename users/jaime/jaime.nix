@@ -7,7 +7,7 @@
     extraGroups = [ "wheel" "networkmanager" "docker"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       discord
-      chromium
+      firefox
     #  thunderbird
     ];
   };
