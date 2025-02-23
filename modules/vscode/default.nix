@@ -19,6 +19,16 @@
       "editor.fontFamily" = "'FiraCode Nerd Font Mono'";
       "editor.fontLigatures" = true;
 
+      "terminal.integrated.profiles.linux" = {
+        bash = null;
+        fish = {
+          path = "${pkgsUnstable.fish.outPath}/bin/fish"; 
+          args = ["-l"];
+        };
+      };
+
+      "terminal.integrated.defaultProfile.linux" = "fish";
+
       #nix-ide
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
