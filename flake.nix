@@ -51,7 +51,6 @@
                     modules = [ 
                         ./hosts/home/configuration.nix
                         ./hosts/home/hardware-configuration.nix
-                        ./modules/system/hyprland.nix
                         ./modules/system/i18n.nix
                         ./modules/system/networking.nix
                         ./modules/system/audio.nix

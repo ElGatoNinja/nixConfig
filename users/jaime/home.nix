@@ -1,16 +1,11 @@
 { config, pkgs, pkgsUnstable, inputs, ... }:
-let
-  nix-colors-lib = inputs.nix-colors.lib.contrib {inherit pkgs;};
-in
 {
   home.username = "jaime";
   home.homeDirectory = "/home/jaime";
 
   imports = [
-    ../../modules/hyprland
     ../../modules/alacritty
     ../../modules/vscode
-    ../../modules/waybar
     ../../modules/browsers/chromium.nix
     ../../modules/fish.nix
     
@@ -18,10 +13,7 @@ in
   ];
 
   #colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
-  colorScheme = nix-colors-lib.colorSchemeFromPicture {
-    path = ../../modules/hyprland/wallpaper.jpg;
-    variant = "dark";
-  };
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-material-dark-soft;
 
 
   home.pointerCursor = {

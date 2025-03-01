@@ -28,6 +28,8 @@
         enable = true;
         theme = "${import ../../modules/login/login-theme.nix {inherit pkgs;}}";
     };
+    services.displayManager.sddm.wayland.enable = true;
+    services.desktopManager.plasma6.enable = true;
 
     fonts.packages = with pkgs;[
       fira-code
@@ -54,20 +56,6 @@
       firefox
 
       sops
-
-      swaybg
-      (waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-      }))
-
-      rofi-wayland
-      xdg-desktop-portal-gtk
-
-      libnotify
-      dunst
-
-      libsForQt5.qt5.qtquickcontrols2
-      libsForQt5.qt5.qtgraphicaleffects
 
       rocmPackages.rocm-smi
       rocmPackages.rocminfo

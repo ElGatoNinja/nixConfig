@@ -1,7 +1,4 @@
 {pkgs, config, ...}: 
-let 
-  color = import ../hyprland/palette.nix;
-in 
 {
   programs.alacritty.enable = true;
   programs.alacritty.settings = {
@@ -20,8 +17,8 @@ in
         green = "0x${base0B}";
         magenta = "0x${base0E}";
         red = "0x${base08}";
-        white = "0x${base06}";
-        yellow = "0x${base09}";
+        white = "0x${base07}";
+        yellow = "0x${base0A}";
       };
       cursor = {
         cursor = "0x${base06}";
@@ -44,11 +41,11 @@ in
         green = "0x${base0B}";
         magenta = "0x${base0E}";
         red = "0x${base08}";
-        white = "0x${base06}";
+        white = "0x${base07}";
         yellow = "0x${base0A}";
       };
       primary = {
-        background = "0x${color.base0}";
+        background = "0x${base00}";
         foreground = "0x${base06}";
       };
     };
